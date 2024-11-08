@@ -28,20 +28,19 @@ export default class PokemonPageComponent implements OnInit {
       .loadPokemon(id)
       .pipe(
         tap(({ name, id }) => {
-          this.title.setTitle(`#${id} - ${name}`);
+          const pageTitle = `#${id} - ${name}`;
+          const pageDescription = `Página del Pokémon ${name}`;
+          this.title.setTitle(pageTitle);
+
           this.meta.updateTag({
             name: 'description',
-            content: `Pokemon page ${name}`,
+            content: pageDescription,
           });
-          this.meta.updateTag({
-            name: 'og:title',
-            content: `#${id} - ${name}`,
-          });
+          this.meta.updateTag({ name: 'og:title', content: pageTitle });
           this.meta.updateTag({
             name: 'og:description',
-            content: `Pokemon page ${name}`,
+            content: pageDescription,
           });
-
           this.meta.updateTag({
             name: 'og:image',
             content: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`,
