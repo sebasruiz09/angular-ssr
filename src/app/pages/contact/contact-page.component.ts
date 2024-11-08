@@ -1,32 +1,32 @@
-import { isPlatformBrowser } from '@angular/common';
-import { Component, OnInit, PLATFORM_ID, inject } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+} from '@angular/core';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'page-contact',
   standalone: true,
   imports: [],
   templateUrl: './contact-page.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class ContactPageComponent implements OnInit {
   private title = inject(Title);
   private meta = inject(Meta);
-  //private platform = inject(PLATFORM_ID);
 
   ngOnInit(): void {
-    //if(isPlatformBrowser(this.platform))
-    this.title.setTitle('contact page');
+    this.title.setTitle('Contact Page');
     this.meta.updateTag({
       name: 'description',
-      content: 'this is my contact page',
+      content: 'Este es mi Contact Page',
     });
-    this.meta.updateTag({
-      name: 'og:title',
-      content: 'contact Page',
-    });
+    this.meta.updateTag({ name: 'og:title', content: 'Contact Page' });
     this.meta.updateTag({
       name: 'keywords',
-      content: 'contact,test',
+      content: 'Hola,Mundo,Fernando,Herrera,Curso,Angular,PRO',
     });
   }
 }
