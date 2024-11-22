@@ -10,8 +10,6 @@ export class PokemonsService {
   private http = inject(HttpClient);
 
   public loadPage(page: number): Observable<SimplePokemon[]> {
-    // 1 = 0
-
     if (page !== 0) {
       --page;
     }
@@ -20,7 +18,7 @@ export class PokemonsService {
 
     return this.http
       .get<PokeAPIResponse>(
-        `https://pokeapi.co/api/v2/pokemon?offset=${page * 20}&limit=20`
+        `https://pokeapi.co/api/v2/pokemon?offset=${page * 20}&limit=20`,
       )
       .pipe(
         map((resp) => {
@@ -28,11 +26,11 @@ export class PokemonsService {
             (pokemon) => ({
               id: pokemon.url.split('/').at(-2) ?? '',
               name: pokemon.name,
-            })
+            }),
           );
 
           return simplePokemons;
-        })
+        }),
 
         // tap(console.log)
       );
